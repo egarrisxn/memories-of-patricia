@@ -57,7 +57,8 @@ export default function ThemeButton({
   const Icon = themeIcons[safeTheme];
 
   React.useEffect(() => {
-    setIsMounted(true);
+    const frame = window.requestAnimationFrame(() => setIsMounted(true));
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   if (!isMounted) {
